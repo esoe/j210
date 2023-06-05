@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3.0" xsi:schemalocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
+    <persistence-unit name="Repository" transaction-type="JTA">
+        <description>Подключение к базе molokoin.ru:3306/j200, через установленный на wildfly datasource: JNDI Name java:/J200DS. Источник данных использую с лабораторной работы j200</description>
+        <jta-data-source>java:/J200DS</jta-data-source>
+        <class>ru.molokoin.j210.entities.Address</class>
+        <class>ru.molokoin.j210.entities.Client</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    </persistence-unit>
+</persistence>

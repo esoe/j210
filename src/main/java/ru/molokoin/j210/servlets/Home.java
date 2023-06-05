@@ -60,17 +60,25 @@ public class Home extends HttpServlet{
         out.println("</head>");
         out.println("<html><body >");
         out.println("<header>");
-        out.println("   <h1 >J200 : Разработка веб-сервисов</h1>");
+        out.println("   <h1 >J210 : Разработка веб-сервисов</h1>");
         out.println("</header>");
         out.println("<aside>");
         out.println("   <h2 >CONTROLS :</h2>");
         //link j200 : edit base
         out.println("    <a href=\"http://www.molokoin.ru:8080/j200/view-list\">EDIT-BASE : J200</a>");
         //link j210 : Clients.xml
-        out.println("    <a href=\"http://www.molokoin.ru:8080/j210/content/Clients.xml\">VIEW : Clients.xml</a>");
+        out.println("    <a href=\"content/Clients.xml\">VIEW : Clients.xml</a>");
         out.println("   <h2 >FILTERS :</h2>");
         //link j210 : CheckSAX
+
         //link j210 : CheckDOM
+        out.println("   <form action=\"check-dom\" method=\"post\">");
+        out.println("    <label >Фильтр по полю \"ФИО\" </label>");
+        out.println("    <input type=\"text\" name=\"filter-name\">");
+        out.println("       <br><br>");
+        out.println("       <button type=\"submit\" formmethod=\"post\">check-dom</button>");
+        out.println("   </form>");
+
         out.println("</aside>");
         out.println("<main>");
         out.println("<div>");
@@ -86,33 +94,27 @@ public class Home extends HttpServlet{
 
         out.println("</main>");
         out.println("<footer>");
-        /**
-         * Выводим данные о клиентах
-         */
+        out.println("   <div>");
+        
+        //Создаем файл Clients.xml
         String path_Clients = ROOT_PATH + File.separator + "content" + File.separator + "Clients.xml";
-        // String msg = "msg: Тестовый контент 1";
-        // putContent(path_test, msg);
         XMLTransformer transformer = new XMLTransformer();
         transformer.createXml(new File(path_Clients), repository);
+        //Выводим данные о клиентах из файла
         out.println("   <h2 >Содержимое сформированного Clients.xml</h2>");
-        out.println("<textarea rows=\"20\" cols=\"100\">" + getContent(path_Clients) + "</textarea>");
-        // out.println("<xmp>" + getContent(path_Clients) + "</xmp>");
-        //out.println(getContent(path_Clients));
-
+        out.println("<textarea rows=\"20\" >" + getContent(path_Clients) + "</textarea>");
+        
         /**
          * Смотрим список файлов и директорий
          */
+        out.println("<br><br>");
         out.println("<p>" + "Файлы контента:");
         Set<String> files = listFiles(ROOT_PATH + File.separator + "content");
         for (String file : files) {
             out.println("<p>" + "FILE: " + file);
         }
 
-        /**
-         * 
-         */
-
-
+        out.println("   </div>");
         out.println("</footer>");
         out.println("</body></html>");
     }

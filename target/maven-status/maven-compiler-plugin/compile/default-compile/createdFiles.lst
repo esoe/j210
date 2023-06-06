@@ -1,0 +1,6 @@
+ru\molokoin\j210\utils\Markdown.class
+ru\molokoin\j210\services\Repository.class
+ru\molokoin\j210\services\RepositoryFace.class
+ru\molokoin\j210\entities\Client.class
+ru\molokoin\j210\entities\Address.class
+ru\molokoin\j210\servlets\Home.class

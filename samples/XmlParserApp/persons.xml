@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<persons>
+    <person email="hsetford0@nature.com" firstName="Haily" gender="Male" id="1" lastName="Setford">
+        <address city="Elektrėnai" country="Lithuania" id="1" latitude="54.7974136" longitude="24.571229" personId="1" street="5829 Haas Lane"/>
+        <address city="Kebili" country="Tunisia" id="2" latitude="33.7071551" longitude="8.9714623" personId="1" street="1101 Havey Drive"/>
+    </person>
+    <person email="proake1@economist.com" firstName="Pepito" gender="Male" id="2" lastName="Roake">
+        <address city="Quận Năm" country="Vietnam" id="3" latitude="10.7540279" longitude="106.6633746" personId="2" street="10385 Florence Circle"/>
+        <address city="Ciangir" country="Indonesia" id="4" latitude="-7.1047476" longitude="108.7303974" personId="2" street="797 Grover Hill"/>
+    </person>
+    <person email="hfrankes2@mediafire.com" firstName="Hilliard" gender="Male" id="3" lastName="Frankes">
+        <address city="Villa María" country="Argentina" id="5" latitude="-32.4084888" longitude="-63.2596263" personId="3" street="5 Sutherland Lane"/>
+        <address city="Pont-à-Mousson" country="France" id="6" latitude="48.9308651" longitude="6.0376291" personId="3" street="6574 Waywood Alley"/>
+    </person>
+</persons>

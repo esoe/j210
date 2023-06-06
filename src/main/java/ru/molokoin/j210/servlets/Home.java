@@ -68,14 +68,22 @@ public class Home extends HttpServlet{
         out.println("    <a href=\"http://www.molokoin.ru:8080/j200/view-list\">EDIT-BASE : J200</a>");
         //link j210 : Clients.xml
         out.println("    <a href=\"content/Clients.xml\">VIEW : Clients.xml</a>");
+        out.println("       <br><br>");
         out.println("   <h2 >FILTERS :</h2>");
+
+        
         //link j210 : CheckSAX
+        out.println("   <form action=\"check-sax\" method=\"post\">");
+        out.println("    <label >Фильтр (sax) по полю \"ФИО\" </label>");
+        out.println("    <input type=\"text\" name=\"filter-name\">");
+        out.println("       <button type=\"submit\" formmethod=\"post\">check-sax</button>");
+        out.println("   </form>");
 
         //link j210 : CheckDOM
-        out.println("   <form action=\"check-dom\" method=\"post\">");
-        out.println("    <label >Фильтр по полю \"ФИО\" </label>");
-        out.println("    <input type=\"text\" name=\"filter-name\">");
         out.println("       <br><br>");
+        out.println("   <form action=\"check-dom\" method=\"post\">");
+        out.println("    <label >Фильтр (dom) по полю \"ФИО\" </label>");
+        out.println("    <input type=\"text\" name=\"filter-name\">");
         out.println("       <button type=\"submit\" formmethod=\"post\">check-dom</button>");
         out.println("   </form>");
 

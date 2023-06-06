@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -29,6 +28,7 @@ public class DemoDOM {
     public static Collection<Client> read(File xml, String filter, RepositoryFace repository){
         /**
          * обновление файла перед считыванием данных
+         * - логичнее делать отдельной операцией перед созданием объекта и не передавлать сюда параметры xml и repository
          */
         XMLTransformer transformer = new XMLTransformer();
         transformer.createXml(xml, repository);

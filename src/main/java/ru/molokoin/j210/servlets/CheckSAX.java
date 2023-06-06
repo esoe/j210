@@ -3,7 +3,14 @@ package ru.molokoin.j210.servlets;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Collection;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import org.xml.sax.SAXException;
 
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
@@ -14,16 +21,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import ru.molokoin.j210.entities.Address;
 import ru.molokoin.j210.entities.Client;
 import ru.molokoin.j210.services.RepositoryFace;
-import ru.molokoin.j210.utils.DemoDOM;
+import ru.molokoin.j210.utils.DemoSAX;
 
-/**
- * Сервлет,
- * - получает от пользователя запрос с параметрами поиска
- * - получает список клиентов (clients), полученный из xml файла и удовлетворяющий параметрам запроса
- * - при получении пустого ответа от *.xml (соответствий по фильтру не найдено), возвращает соответствующий ответ пользователю
- */
-@WebServlet(name = "CheckDOM", value = "/check-dom")
-public class CheckDOM extends HttpServlet{
+@WebServlet(name = "CheckSAX", value = "/check-sax")
+public class CheckSAX extends HttpServlet{
     @EJB
     private RepositoryFace repository;
     
@@ -66,8 +67,18 @@ public class CheckDOM extends HttpServlet{
         String ROOT_PATH = request.getSession().getServletContext().getRealPath("");
         String path_Clients = ROOT_PATH + File.separator + "content" + File.separator + "Clients.xml";
         File xml = new File(path_Clients);
-        Collection<Client> clients = DemoDOM.read(xml, request.getParameter("filter-name"), repository);
-        out.println("   <h2 >Данные полученные методом DOM из файла Clients.xml (фильтр: "+ request.getParameter("filter-name") +")</h2>");
+        Collection<Client> clients = new ArrayList<>();
+        SAXParserFactory factory = SAXParserFactory.newInstance();
+        try {
+            SAXParser parser = factory.newSAXParser();
+            DemoSAX sax = new DemoSAX(request.getParameter("filter-name"), xml, repository);
+            parser.parse(xml, sax);
+            clients = sax.read();
+        } catch (ParserConfigurationException | IOException | SAXException e) {
+            e.printStackTrace();
+        }
+
+        out.println("   <h2 >Данные полученные методом SAX из файла Clients.xml (фильтр: "+ request.getParameter("filter-name") +")</h2>");
         if (clients.size()>0){
             out.println("<br><br>");
             out.println("<table>");
@@ -107,4 +118,5 @@ public class CheckDOM extends HttpServlet{
         out.println("</main>");
         out.println("</body></html>");
     }
+    
 }
